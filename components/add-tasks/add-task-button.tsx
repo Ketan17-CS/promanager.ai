@@ -5,35 +5,44 @@ import { Doc, Id } from "@/convex/_generated/dataModel";
 
 export const AddTaskWrapper = ({
     parentTask,
-    projectId
+    projectId,
 }: {
     parentTask?: Doc<"todos">;
-    projectId?: Doc<"projects">;
+    projectId?: Id<"projects">;
 }) => {
     const [showAddTask, setShowAddTask] = useState(false);
 
     return showAddTask ? (
-        <AddTaskInline setShowAddTask={setShowAddTask} parentTask={parentTask} projectId={projectId} />
+        <AddTaskInline
+            setShowAddTask={setShowAddTask}
+            parentTask={parentTask}
+            projectId={projectId}
+        />
     ) : (
-        <AddTaskButton onClick={() => setShowAddTask(true)}
-            title={parentTask?._id ? "Add sub-task" : "Add-task"} />
+        <AddTaskButton
+            onClick={() => setShowAddTask(true)}
+            title={parentTask?._id ? "Add sub-task" : "Add task"}
+        />
     );
 };
 
-export default function AddTaskButton({ onClick, title }: {
+export default function AddTaskButton({
+    onClick,
+    title,
+}: {
     onClick: Dispatch<SetStateAction<any>>;
     title: string;
 }) {
     return (
         <button className="pl-2 flex mt-2 flex-1" onClick={onClick}>
-            <div className="flex flex-col item-center justify-center gap-1 text-center">
-                <div className="flex items-center gap-2 justify-center ">
-                    <Plus className="h-6 w-6 text-primary hover:bg-primary hover:rounded-xl hover:text-white" />
-                    <h3 className="text-base font tracking-tight text-foreground/70">
+            <div className="flex flex-col items-center justify-center gap-1 text-center">
+                <div className="flex items-center gap-2 justify-center">
+                    <Plus className="h-4 w-4 text-primary hover:bg-primary hover:rounded-xl hover:text-white" />
+                    <h3 className="text-base font-light tracking-tight text-foreground/70">
                         {title}
                     </h3>
                 </div>
             </div>
         </button>
-    )
+    );
 }

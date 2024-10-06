@@ -49,7 +49,7 @@ export default function AddTaskInline({
     projectId: myProjectId,
 }: {
     setShowAddTask: Dispatch<SetStateAction<boolean>>;
-    parentTask: Doc<"todos">;
+    parentTask?: Doc<"todos">;
     projectId?: Id<"projects">;
 
 
