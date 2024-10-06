@@ -2,6 +2,7 @@ import { Calendar, CalendarDays, Grid2X2, Inbox } from "lucide-react";
 
 export const primaryNavItems = [
     {
+        id: "primary",
         name: "Inbox",
         link: "/loggedin",
         icon: <Inbox className="w-4 h-4" />
@@ -25,3 +26,5 @@ export const primaryNavItems = [
 
     }
 ]
+
+export const GET_STARTED_PROJECT_ID = "qd7506xms68tjppm3k7jgt26v16z2c59";

@@ -2,8 +2,9 @@
 import React from 'react';
 import { api } from "@/convex/_generated/api";
 import { useQuery } from "convex/react";
-import Task from "./task";
-import { CircleCheckBig } from 'lucide-react';
+import Todos from './todos';
+import CompletedTodos from './completed-todos';
+import { AddTaskWrapper } from '../add-tasks/add-task-button';
 
 export default function TodoList() {
     const todos = useQuery(api.todos.get) ?? [];
@@ -22,24 +23,17 @@ export default function TodoList() {
                 <h1 className="text-lg font-semibold md:text-2xl">Inbox</h1>
             </div>
             <div className="flex flex-col gap-1 py-4">
-                {inCompletedTodos.map((task, idx) => (
-                    <Task {...task} key={task._id} />
-                ))}
+                <Todos items={inCompletedTodos} />
             </div>
+
+            <AddTaskWrapper />
 
             <div className="flex flex-col gap-1 py-4">
-                {completedTodos.map((task, idx) => (
-                    <Task {...task} key={task._id} />
-                ))}
+                <Todos items={completedTodos} />
+
             </div>
 
-            <div className="flex items-center gap-1 border-b-2 p-2 border-gray-100 text-sm text-foreground/80">
-                <>
-                    <CircleCheckBig />
-                    <span>+ {totalTodos}</span>
-                    <span className="capitalize">Completed Task</span>
-                </>
-            </div>
+            <CompletedTodos totalTodos={totalTodos} />
         </div>
     );
 }
