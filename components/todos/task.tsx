@@ -1,9 +1,9 @@
+import { Doc } from "@/convex/_generated/dataModel";
 import clsx from "clsx";
+import AddTaskDialog from "../add-tasks/add-task-dialog";
 import { Checkbox } from "../ui/checkbox";
 import { Dialog, DialogTrigger } from "../ui/dialog";
-import { Doc } from "@/convex/_generated/dataModel";
-import AddTaskDialog from "../add-tasks/add-task-dialog";
-import { Calendar, GitBranch } from "lucide-react";
+import { Calendar, GitBranch, Tag } from "lucide-react";
 import moment from "moment";
 
 function isSubTodo(
@@ -16,25 +16,30 @@ export default function Task({
     data,
     isCompleted,
     handleOnChange,
-    showDetails = false
+    showDetails = false,
 }: {
     data: Doc<"todos"> | Doc<"subTodos">;
     isCompleted: boolean;
     handleOnChange: any;
-    showDetails: boolean;
+    showDetails?: boolean;
 }) {
-    const { taskName, dueDate } = data
+    const { taskName, dueDate } = data;
+
     return (
         <div
             key={data._id}
-            className="flex item-center space-x-2 border-b-2 p-2 border-gray-100 animate-in fade-in">
+            className="flex items-center space-x-2 border-b-2 p-2 border-gray-100 animate-in fade-in"
+        >
             <Dialog>
-                <div className="flex gap-2 item-center justify-end w-full">
+                <div className="flex gap-2 items-center justify-end w-full">
                     <div className="flex gap-2 w-full">
-                        <Checkbox id="todo" className={clsx(
-                            "w-5 h-5 rounded-xl",
-                            isCompleted && "data-[state=checked]:bg-gray-300 border-gray-300"
-                        )}
+                        <Checkbox
+                            id="todo"
+                            className={clsx(
+                                "w-5 h-5 rounded-xl",
+                                isCompleted &&
+                                "data-[state=checked]:bg-gray-300 border-gray-300"
+                            )}
                             checked={isCompleted}
                             onCheckedChange={handleOnChange}
                         />
@@ -69,5 +74,5 @@ export default function Task({
                 </div>
             </Dialog>
         </div>
-    )
+    );
 }
