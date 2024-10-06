@@ -35,11 +35,30 @@ import {
 import { Input } from "@/components/ui/input"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import UserProfile from "./user-profile"
-import { link } from "fs"
-import { primaryNavItems } from "@/utils"
 
 export default function SideBar() {
-
+    const primaryNavItems = [
+        {
+            name: 'Inbox',
+            link: '/loggedin',
+            icon: <Inbox className="w-4 h-4" />,
+        },
+        {
+            name: 'Today',
+            link: '/loggedin/today',
+            icon: <Calendar className="w-4 h-4" />,
+        },
+        {
+            name: 'Upcoming',
+            link: '/loggedin/upcoming',
+            icon: <CalendarDays className="w-4 h-4" />,
+        },
+        {
+            name: 'Filters & Labels',
+            link: '/loggedin/filters-labels',
+            icon: <Grid2X2 className="w-4 h-4" />,
+        },
+    ]
     return (
         <div className="hidden border-r bg-muted/40 md:block">
             <div className="flex h-full max-h-screen flex-col gap-2">
@@ -48,14 +67,15 @@ export default function SideBar() {
                 </div>
                 <div className="flex-1">
                     <nav className="grid items-start px-2 text-sm font-medium lg:px-4">
-                        {primaryNavItems.map(({ name, icon, link }, idx) => (<Link
-                            key={idx}
-                            href="#"
-                            className="flex items-center gap-3 rounded-lg px-3 py-2  transition-all hover:text-primary"
-                        >
-                            {icon}
-                            {name}
-                        </Link>
+                        {primaryNavItems.map(({ name, icon, link }, idx) => (
+                            <Link
+                                key={idx}
+                                href={link}
+                                className="flex items-center gap-3 rounded-lg px-3 py-2 transition-all hover:text-primary"
+                            >
+                                {icon}
+                                {name}
+                            </Link>
                         ))}
                     </nav>
                 </div>
@@ -77,5 +97,6 @@ export default function SideBar() {
                 </div>
             </div>
         </div>
+
     )
 }
