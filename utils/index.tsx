@@ -19,12 +19,12 @@ export const primaryNavItems = [
         icon: <CalendarDays className="w-4 h-4" />
 
     },
-    {
-        name: "Filters & Labels",
-        link: "/loggedin/filter-labels",
-        icon: <Grid2X2 className="w-4 h-4" />
+    // {
+    //     name: "Filters & Labels",
+    //     link: "/loggedin/filter-labels",
+    //     icon: <Grid2X2 className="w-4 h-4" />
 
-    }
+    // }
 ]
 
 export const GET_STARTED_PROJECT_ID = "qd7506xms68tjppm3k7jgt26v16z2c59";

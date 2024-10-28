@@ -33,7 +33,7 @@ export default function TodoList() {
 
             </div>
 
-            <CompletedTodos totalTodos={totalTodos} />
+            <CompletedTodos totalTodos={Array.isArray(totalTodos) ? totalTodos.length : totalTodos} />
         </div>
     );
 }
